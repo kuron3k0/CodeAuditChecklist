@@ -243,7 +243,7 @@ expression.getValue().toString();
 OgnlContext context = new OgnlContext();
 Ognl.getValue("@java.lang.Runtime@getRuntime().exec('calc')", context, context.getRoot());
 ```
-具体可触发OGNL解析的接口请参考[mi1k7ea大佬的总结](https://www.mi1k7ea.com/2020/03/16/OGNL%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/)
+具体可触发OGNL解析的接口请参考[mi1k7ea大佬的总结](https://www.mi1k7ea.com/2020/03/16/OGNL%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/)
 
 - MVEL
 ```java
