@@ -35,6 +35,7 @@
 - stream_socket_client
 - socket_connect
 - fsockopen
+- fopen
 
 ### XXE
 - XMLReader
@@ -53,6 +54,7 @@
 - $$
 
 ### File
+- fputcsv
 - fputs
 - fprintf
 - fwrite
@@ -65,9 +67,35 @@
 - readfile
 - file
 - file_get_contents
-- stream_get_contents
 - unlink
 - readdir
 - glob
 - mkdir
 - rmdir
+
+### Open Redirect
+- header
+
+### XSS
+- echo
+- print
+- printf
+- print_r
+- var_dump
+- var_export
+
+### Information Disclosure
+- phpinfo
+
+### SQL Injection
+- mysql_query
+- mysql_db_query
+- mysql_fetch_array
+- mysql_fetch_assoc 
+- mysql_fetch_field 
+- mysql_fetch_lengths 
+- mysql_fetch_object
+- mysql_fetch_row 
+- mysql_unbuffered_query
+- PDO::query 
+- mysqli_query
