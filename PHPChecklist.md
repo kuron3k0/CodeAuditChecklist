@@ -17,6 +17,9 @@
 - usort
 - array_map
 - array_filter
+- array_reduce
+- array_walk
+- array_walk_recursive
 - pcntl_exec
 - proc_open
 - mail
