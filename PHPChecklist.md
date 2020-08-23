@@ -64,6 +64,7 @@
 - rename
 - link
 - symlink
+- fopen
 - readfile
 - file
 - file_get_contents
