@@ -15,13 +15,52 @@
 - call_user_method
 - call_user_method_array
 - usort
+```php
+$a=array("calc","calc"); //two arguments
+usort($a,"system");
+```
 - array_map
+```php
+$a=array("whoami");
+array_map("system",$a);
+```
 - array_filter
+```php
+$a=array("whoami");
+array_filter($a,"system");
+```
 - array_reduce
+```php
+function mysystem($a,$b){
+	system($b);
+}
+$a=array("whoami");
+array_reduce($a,"mysystem");
+```
 - array_walk
+```php
+$a=array('0'=>"whoami");
+array_walk($a,"system");
+```
 - array_walk_recursive
+```php
+$a=array('0'=>"whoami");
+array_walk_recursive($a,"system");
+```
 - pcntl_exec
+```php
+pcntl_exec("/usr/bin/whoami");
+```
 - proc_open
+```php
+$descriptorspec = array(
+	0 => array("pipe", "r"),  // 标准输入，子进程从此管道中读取数据
+	1 => array("pipe", "w"),  // 标准输出，子进程向此管道中写入数据
+	2 => array("file", "D:\\tmp.txt", "a") // 标准错误，写入到一个文件
+ );
+$cwd = 'D:\\';
+$process = proc_open('calc', $descriptorspec, $pipes, $cwd, $env);
+```
 - mail
 - include
 - include_once
