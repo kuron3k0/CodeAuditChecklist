@@ -88,7 +88,8 @@ String result = xPathExpr.evaluate(builder.parse(new ByteArrayInputStream(xmlStr
 - readObject
 - readUnshared
 - Yaml.load
-- XMLDecoder.fromXML
+- XStream.fromXML
+- XMLDecoder.readObject
 - ObjectMapper.readValue
 - JSON.parseObject
 
