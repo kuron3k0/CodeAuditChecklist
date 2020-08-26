@@ -72,7 +72,7 @@ DocumentHelper.parseText(xmlString);
 
 - XPathExpression(?)
 ```java
-//网上的利用代码，实际上evaluate的参数是Node类型，代码都跑不通，不知道是不是跟java版本有关
+//网上的利用代码，实际上evaluate的参数是Node类型，代码都跑不通，不知道是不是跟java版本有关
 XPathFactory xPathFactory = XPathFactory.newInstance();
 XPath xpath = xPathFactory.newXPath();
 XPathExpression xPathExpr = xpath.compile("/somepath/text()");
