@@ -183,6 +183,72 @@ for(int i=0;i<s.length;i++){
     System.out.println(s[i]);
 }
 ```
+- RandomAccessFile
+```java
+File file = new File("/tmp/test.txt");
+
+        // 定义待写入文件内容
+        String content = "Hello World.";
+
+        try {
+            // 创建RandomAccessFile对象,rw表示以读写模式打开文件，一共有:r(只读)、rw(读写)、
+            // rws(读写内容同步)、rwd(读写内容或元数据同步)四种模式。
+            RandomAccessFile raf = new RandomAccessFile(file, "rw");
+
+            // 写入内容二进制到文件
+            raf.write(content.getBytes());
+            raf.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+```
+
+- NIO
+```java
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+/**
+ * Creator: yz
+ * Date: 2019/12/4
+ */
+public class FilesDemo {
+
+    public static void main(String[] args) {
+        // 通过File对象定义读取的文件路径
+//        File file  = new File("/etc/passwd");
+//        Path path1 = file.toPath();
+
+        // 定义读取的文件路径
+        Path path = Paths.get("/etc/passwd");
+
+        try {
+            byte[] bytes = Files.readAllBytes(path);
+            System.out.println(new String(bytes));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        path = Paths.get("/tmp/test.txt");
+
+        // 定义待写入文件内容
+        String content = "Hello World.";
+
+        try {
+            // 写入内容二进制到文件
+            Files.write(path, content.getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+
+
+```
 ### Autobinding
 - @SessionAttributes
 ```java
