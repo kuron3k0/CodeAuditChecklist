@@ -1,4 +1,3 @@
-
 ## C Checklist
 
 ### Command Execution
@@ -27,3 +26,19 @@
 - fputs
 - fputc
 - freopen
+- unlink
+- remove
+- rmdir
+- mkdir
+- rename
+- symlink
+
+### SSRF
+
+- connect
+
+### Memory
+
+- malloc
+- strdup
+- free
