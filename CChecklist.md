@@ -42,6 +42,7 @@
 - malloc
 - strdup
 - free
+- realpath
 
 ### Format String 
 
