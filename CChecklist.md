@@ -44,6 +44,7 @@
 - free
 
 ### Format String 
+
 - printf
 - fprintf
 - sprintf
@@ -51,5 +52,4 @@
 - vfprintf
 - vprintf
 - vsprintf
-
 - vsnprintf
