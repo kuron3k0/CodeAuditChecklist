@@ -42,3 +42,14 @@
 - malloc
 - strdup
 - free
+
+### Format String 
+- printf
+- fprintf
+- sprintf
+- snprintf
+- vfprintf
+- vprintf
+- vsprintf
+
+- vsnprintf
