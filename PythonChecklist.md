@@ -1,0 +1,83 @@
+## Python Checklist
+
+### Code & Command Execution
+- eval
+- execfile
+- compile
+- map
+- input
+- os.system
+- os.popen
+- os.popen2
+- os.popen3
+- os.popen4
+- os.execl
+- os.execle
+- os.execlp
+- os.execlpe
+- os.execv
+- os.execve
+- os.execvp
+- os.execvpe
+- os.spawnl
+- os.spawnle
+- os.spawnlp
+- os.spawnlpe
+- os.spawnv
+- os.spawnve
+- os.spawnvp
+- os.spawnvpe
+- subprocess.call
+- subprocess.check_call
+- subprocess.check_output
+- subprocess.Popen
+- commands.getstatusoutput
+- commands.getoutput
+- commands.getstatus
+- glob.glob
+- linecache.getline
+- io.open
+- popen2.popen2
+- popen2.popen3
+- popen2.popen4
+- timeit.timeit
+- timeit.repeat
+- sys.call_tracing
+- code.interact
+- code.compile_command
+- codeop.compile_command
+- pty.spawn
+- posixfile.open
+- posixfile.fileopen
+- platform.popen
+
+### SSTI (jinja2, Mako, Tornado, Django)
+- Template
+- render_template_string
+- render
+
+### File
+- open
+- shutil.copyfileobj
+- shutil.copyfile
+- shutil.copy
+- shutil.copy2
+- shutil.move
+- shutil.make_archive
+- dircache.listdir
+- dircache.opendir
+- os.remove
+- os.open
+- os.pipe
+- os.listdir
+- os.access
+- Flask
+	- send_file
+	- send_from_directory
+  
+### Deserialization
+- pickle.load
+- pickle.loads
+- cPickle.load
+- cPickle.loads
+- yaml.load
