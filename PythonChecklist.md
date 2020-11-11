@@ -50,6 +50,8 @@
 - posixfile.open
 - posixfile.fileopen
 - platform.popen
+- importlib.import_module
+- importlib.__import__
 
 ### SSTI (jinja2, Mako, Tornado, Django)
 - Template
