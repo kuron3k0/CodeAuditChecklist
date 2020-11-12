@@ -116,3 +116,11 @@ with shelve.open('test.db') as db:
     db['a']
     
 ```
+
+### CRLF
+- httplib
+- urllib
+- urllib2
+
+### SSRF
+- urllib.urlopen
