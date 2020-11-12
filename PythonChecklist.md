@@ -52,6 +52,18 @@
 - platform.popen
 - importlib.import_module
 - importlib.\_\_import\_\_
+- Image.open
+```python
+# 来自 https://xz.aliyun.com/t/44
+from PIL import Image
+def get_img_size(filepath=""):
+    '''获取图片长宽'''
+    if filepath:
+        img = Image.open(filepath)
+        img.load()
+        return img.size
+    return (0, 0)
+```
 
 ### SSTI (jinja2, Mako, Tornado, Django)
 - Template
