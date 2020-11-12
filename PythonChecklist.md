@@ -76,7 +76,7 @@
 - Flask
 	- send_file
 	- send_from_directory
-        - send_static_file（？）
+	- send_static_file（？）
   
 ### Deserialization
 - pickle.load
@@ -84,3 +84,18 @@
 - cPickle.load
 - cPickle.loads
 - yaml.load
+- shelve（本质上还是pickle）
+```python
+import shelve
+import os
+class eee(object):
+    def __reduce__(self):
+        return (os.system,('calc',))
+
+with shelve.open('test.db') as db:
+    db['a'] = eee()
+    
+with shelve.open('test.db') as db:
+    db['a']
+    
+```
