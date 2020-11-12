@@ -73,6 +73,11 @@
 - os.pipe
 - os.listdir
 - os.access
+- types
+```python
+import types
+types.FileType("/etc/passwd").read()
+```
 - Flask
 	- send_file
 	- send_from_directory
