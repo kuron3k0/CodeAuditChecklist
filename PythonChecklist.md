@@ -123,4 +123,8 @@ with shelve.open('test.db') as db:
 - urllib2
 
 ### SSRF
-- urllib.urlopen
+- httplib
+- http.client（python3将`httplib`改名为`http.client`）
+- urllib
+- urllib2
+- urllib3（python3）
