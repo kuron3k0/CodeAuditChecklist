@@ -76,6 +76,7 @@
 - Flask
 	- send_file
 	- send_from_directory
+        - send_static_file（？）
   
 ### Deserialization
 - pickle.load
