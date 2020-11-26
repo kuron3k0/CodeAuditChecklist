@@ -41,6 +41,7 @@
 
 ## File
 - unlink
+- readlink
 - rmdir
 - rename
 - symlink
