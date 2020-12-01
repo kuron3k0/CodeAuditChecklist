@@ -10,7 +10,9 @@
 - eval
 - evalbytes
 - Template
-
+- IPC::Run
+- IPC::Open2
+- IPC::Open3
 
 
 ## File Include
