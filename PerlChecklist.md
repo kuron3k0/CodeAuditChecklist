@@ -33,6 +33,7 @@
 - HTTP::Response
 - WWW::
 - Net::
+- IO::Socket::INET
 
 
 
