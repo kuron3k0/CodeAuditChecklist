@@ -133,3 +133,6 @@ with shelve.open('test.db') as db:
 - urllib2
 - urllib3（python3）
 - pycurl
+
+### XXE
+- xml.sax.parseString
