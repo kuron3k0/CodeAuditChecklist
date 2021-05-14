@@ -61,7 +61,7 @@ $descriptorspec = array(
 $cwd = 'D:\\';
 $process = proc_open('calc', $descriptorspec, $pipes, $cwd, $env);
 ```
-- mail
+- mail（第五个参数）
 - include
 - include_once
 - require
