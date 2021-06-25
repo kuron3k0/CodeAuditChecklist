@@ -114,7 +114,20 @@ my $pid = open3(my $chld_in, my $chld_out, my $chld_err = gensym,
                 'some cmd and args');
 ```
 
-
+## XSS
+- print
+```perl
+print "<img src>";
+```
+- printf
+```perl
+printf "<button>aaa</button>";
+```
+- say
+```perl
+use feature "say";
+say "<iframe src></iframe>";
+```
 
 ## File Include
 - do
