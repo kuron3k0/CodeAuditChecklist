@@ -188,6 +188,39 @@ END
 print XML::LibXML->new()->parse_string($xml);
 ```
 
+## parameter override
+- 哈希引入数组导致变量覆盖
+
+```perl
+@list = ("member", "user", "admin");
+
+%hash = (
+    "user" => "sangfor",
+    "password" => "666",
+    "level" => @list
+    );
+
+while (($k, $v) = each %hash) {
+    print "$k: $v\n";
+}
+```
+
+- 数组参数导致变量覆盖
+
+```perl
+sub test {
+    ($a, $b, $c) = @_;
+    print "$a$b$c\n";
+}
+# 除了第一个输出12，其他都是123
+test(1, 2);
+test(1, 2, 3);
+test((1, 2, 3));
+test(1, (2, 3));
+test(1, 2, 3, 4);
+test(1, (2, 3), 4);
+```
+
 
 
 ## File
