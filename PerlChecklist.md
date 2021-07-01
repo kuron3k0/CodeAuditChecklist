@@ -189,13 +189,15 @@ print XML::LibXML->new()->parse_string($xml);
 ```
 
 ## parameter override
+
+参考[mi1k7ea大佬的文章](https://www.mi1k7ea.com/2020/11/24/Perl%E5%9F%BA%E7%A1%80-%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/#XSS)
 - 哈希引入数组导致变量覆盖
 
 ```perl
 @list = ("member", "user", "admin");
 
 %hash = (
-    "user" => "sangfor",
+    "user" => "mi1k7ea",
     "password" => "666",
     "level" => @list
     );
