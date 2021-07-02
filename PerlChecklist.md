@@ -152,15 +152,58 @@ print `calc`;
 
 ## SSRF
 - connect
-- socket
+```perl
+$port = 21;    #  ftp 端口
+$server_ip_address = "10.12.12.168";
+connect( SOCKET, pack_sockaddr_in($port, inet_aton($server_ip_address)))
+    or die "无法绑定端口! \n";
+```
 - LWP::UserAgent
-- HTTP::Request
-- HTTP::Response
-- WWW::
+```perl
+require LWP::UserAgent;
+ 
+my $ua = LWP::UserAgent->new;
+$ua->timeout(10);
+$ua->env_proxy;
+my $response = $ua->get('http://search.cpan.org/');
+```
 - Net::
+- WWW::
 - IO::Socket::INET
+```perl
+use IO::Socket::INET;
+
+# flush after every write
+$| = 1;
 
 
+my ($socket,$client_socket);
+my ($peeraddress,$peerport);
+
+
+# creating object interface of IO::Socket::INET modules which internally does
+# socket creation, binding and listening at the specified port address.
+$socket = new IO::Socket::INET (
+    LocalHost => '127.0.0.1',
+    LocalPort => '5000',
+    Proto => 'tcp',
+    Listen => 5,
+    Reuse => 1
+) or die "ERROR in Socket Creation : $!\n”;
+```
+
+## redirect
+- print
+```perl
+print "Location: www.baidu.com", "\n";
+```
+- CGI::Header
+```perl
+use CGI::Header;
+ 
+my $h = CGI::Header->new( header => $header );
+$h->set( 'Location' => 'www.baidu.com' );
+```
 
 ## XXE
 - XML::Twig
