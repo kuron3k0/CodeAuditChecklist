@@ -131,11 +131,22 @@ say "<iframe src></iframe>";
 
 ## File Include
 - do
-- import
-- no
-- package
+```perl
+# exp.pl
+do './Exp.pm';
+
+# Exp.pm
+print `calc`;
+```
 - require
-- use
+```perl
+# exp.pl
+do './Exp.pm';
+
+# Exp.pm
+print `calc`;
+```
+
 
 
 
