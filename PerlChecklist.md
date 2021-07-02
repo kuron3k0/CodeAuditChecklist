@@ -226,6 +226,38 @@ test(1, (2, 3), 4);
 
 
 ## File
+- CGI.upload(其实最终还是调open)
+```perl
+use strict;
+use Fcntl;  
+use CGI;
+
+use constant RECEIVE_FILE_PATH => '/Library/WebServer/Received';
+use constant BUFFER_SIZE => 10_240;
+use constant MAX_SIZE_FILE_PATH => 1024*1024*512;
+
+
+my $q = new CGI();
+$q->cgi_error and &error($q, 'Having error creating cgi handle: '.$q->cgi_error);
+my $username = $q -> param('uname') or &error($q, 'username cannot be fetched');
+my $password = $q -> param('pw') or &error($q, 'password cannot be fetched');
+
+my $file = $q -> param('upload_file') or &error($q, 'upload file name cannot be fetched');
+
+my $fh = $q -> upload('upload_file') or &error($q, 'cannot get the handler of uploaded file with name - '.$file);
+
+open OUTPUT, "> ".RECEIVE_FILE_PATH."/$file";
+ or &error($q, 'open OUTPUT fails');  
+
+
+while(<$fh>){
+  print OUTPUT $_;
+}
+
+
+close $fh;
+close OUTPUT;
+```
 - unlink
 - readlink
 - rmdir
