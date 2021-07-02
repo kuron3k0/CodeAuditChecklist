@@ -350,3 +350,6 @@ use File::Copy "cp";
 $n = FileHandle->new("/a/file","r");
 cp($n,"x");
 ```
+
+## 00截断
+**perl中也存在00截断的情况，需要注意一下**
