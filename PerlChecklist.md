@@ -259,14 +259,94 @@ close $fh;
 close OUTPUT;
 ```
 - unlink
-- readlink
+```perl
+unlink($filename);
+```
 - rmdir
+```perl
+$dir = "/tmp/perl";
+ 
+# 删除 /tmp 目录下的 perl 目录
+rmdir( $dir ) or die "无法删除 $dir 目录, $!";
+```
 - rename
+```perl
+rename($file, $newname);
+```
 - symlink
+```perl
+symlink($oldname,$newname) or die print "$!\n";
+```
 - link
+```perl
+$existing_file = "/uer/home/test1";
+$new_file = "/usr/home/test2";
+$retval = link $existing_file, $new_file ;
+if( $retval == 1 ){
+  print"Link created successfully\n";
+}else{
+  print"Error in creating link $!\n";
+}
+```
 - sysopen
+```perl
+sysopen(DATA, "file.txt", O_RDWR);
+```
 - mkdir
+```perl
+$dir = "/tmp/perl";
+ 
+# 在 /tmp 目录下创建 perl 目录
+mkdir( $dir ) or die "无法创建 $dir 目录, $!";
+```
 - opendir
-- readdir
+```perl
+opendir (DIR, '.') or die "无法打开目录, $!";
+```
 - IO::File
+```perl
+use IO::File;
 
+$fh = IO::File->new();
+if ($fh->open("< file")) {
+    print <$fh>;
+    $fh->close;
+}
+
+$fh = IO::File->new("> file");
+if (defined $fh) {
+    print $fh "bar\n";
+    $fh->close;
+}
+
+$fh = IO::File->new("file", "r");
+if (defined $fh) {
+    print <$fh>;
+    undef $fh;       # automatically closes the file
+}
+
+$fh = IO::File->new("file", O_WRONLY|O_APPEND);
+if (defined $fh) {
+    print $fh "corge\n";
+
+    $pos = $fh->getpos;
+    $fh->setpos($pos);
+
+    undef $fh;       # automatically closes the file
+}
+
+autoflush STDOUT 1;
+```
+- File::Copy
+```perl
+use File::Copy;
+
+copy("sourcefile","destinationfile") or die "Copy failed: $!";
+copy("Copy.pm",\*STDOUT);
+move("/dev1/sourcefile","/dev2/destinationfile");
+
+use File::Copy "cp";
+
+$n = FileHandle->new("/a/file","r");
+cp($n,"x");
+```
