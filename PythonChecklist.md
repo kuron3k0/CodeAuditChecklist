@@ -189,7 +189,36 @@ with shelve.open('test.db') as db:
 - pycurl
 
 ### XXE
-- xml.sax.parseString
+- python2.x
+
+| kind                                                         | sax            | etree          | minidom        | pulldom        | xmlrpc         |
+| ------------------------------------------------------------ | -------------- | -------------- | -------------- | -------------- | -------------- |
+| billion laughs                                               | **Vulnerable** | **Vulnerable** | **Vulnerable** | **Vulnerable** | **Vulnerable** |
+| quadratic blowup                                             | **Vulnerable** | **Vulnerable** | **Vulnerable** | **Vulnerable** | **Vulnerable** |
+| external entity expansion                                    | **Vulnerable** | Safe (1)       | Safe (2)       | **Vulnerable** | Safe (3)       |
+| [DTD](https://en.wikipedia.org/wiki/Document_type_definition)  retrieval | **Vulnerable** | Safe           | Safe           | **Vulnerable** | Safe           |
+| decompression bomb                                           | Safe           | Safe           | Safe           | Safe           | **Vulnerable** |
+
+1. [`xml.etree.ElementTree`](xml.etree.elementtree.html#module-xml.etree.ElementTree) doesn't expand external  entities and raises a ParserError when an entity occurs. 
+2. [`xml.dom.minidom`](xml.dom.minidom.html#module-xml.dom.minidom) doesn't expand external entities and  simply returns the unexpanded entity verbatim. 
+3. [`xmlrpclib`](xmlrpclib.html#module-xmlrpclib) doesn't expand external entities and omits  them. 
+
+
+- python3.x
+
+| kind                                                         | sax            | etree          | minidom        | pulldom        | xmlrpc         |
+| ------------------------------------------------------------ | -------------- | -------------- | -------------- | -------------- | -------------- |
+| billion laughs                                               | **Vulnerable** | **Vulnerable** | **Vulnerable** | **Vulnerable** | **Vulnerable** |
+| quadratic blowup                                             | **Vulnerable** | **Vulnerable** | **Vulnerable** | **Vulnerable** | **Vulnerable** |
+| external entity expansion                                    | Safe (4)       | Safe    (1)    | Safe    (2)    | Safe (4)       | Safe    (3)    |
+| [DTD](https://en.wikipedia.org/wiki/Document_type_definition) retrieval | Safe (4)       | Safe           | Safe           | Safe (4)       | Safe           |
+| decompression bomb                                           | Safe           | Safe           | Safe           | Safe           | **Vulnerable** |
+
+1. [`xml.etree.ElementTree`](mk:@MSITStore:D:\software\Python\Python38\Doc\python383.chm::/library/xml.etree.elementtree.html#module-xml.etree.ElementTree) doesn't expand external entities and raises a `ParserError` when an entity occurs.
+2. [`xml.dom.minidom`](mk:@MSITStore:D:\software\Python\Python38\Doc\python383.chm::/library/xml.dom.minidom.html#module-xml.dom.minidom) doesn't expand external entities and simply returns the unexpanded entity verbatim.
+3. `xmlrpclib` doesn't expand external entities and omits them.
+4. Since Python 3.7.1, external general entities are no longer processed by default.
+
 
 ### XSS
 - autoescape
