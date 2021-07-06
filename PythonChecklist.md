@@ -105,24 +105,21 @@ cProfile.runctx("__import__('os').system('id')", None, None)
 
 
 ### SSTI (jinja2, Mako, Tornado, Django)
-- Template
-- render_template_string
-- render
 ```python
-#1、flask:
+# 1、flask:
 flask.render_template_string第一个参数、 
 Environment.from_string第一个参数
 flask.render_template第一个参数指向的文件内容、
 Environment.get_template第一个参数指向的文件内容、
 jinja2.Template继承jinja2.BaseLoader类并作为loader参数传递给jinja2.Environment的模板加载器,查看实现的模板加载逻辑是否安全
 
-2、Django: 
+# 2、Django: 
 django.template.Template类构造函数的第一个参数、django.template.loader.get_template_from_string函数的第一个参数、django.template.loader.render_to_string函数第一个参数指向的文件内容、
 django.shortcuts.render函数第二个参数指向的文件内容、
 django.template.loader.get_template函数第一个参数指向的文件内容
 
 
-3、Tonado: 
+# 3、Tonado: 
 tornado.template.Template类第一个参数
 tornado.template.Loader类第一个参数指向的路径
 tornado.web.RequestHandler类第一个参数指向的文件内容
@@ -193,3 +190,81 @@ with shelve.open('test.db') as db:
 
 ### XXE
 - xml.sax.parseString
+
+### XSS
+- autoescape
+```python
+{% autoescape off %}
+    {{ title }}
+{% end autoescape %}
+
+# 模板引擎选项设置禁用自动转义导致模板输出数据不会被转义处理，有风险
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        ...,
+        'OPTIONS': {'autoescape': False}
+    }
+]
+
+# render函数通过设置上下文变量autoescape=False禁用引擎自动转义
+# 本次输出用户不可信数据不会被自动转义
+render(request, "index.html", {"my_name": "<script>alert(123);</script>", "autoescape": False})
+
+# 同上设置Context的autoescape属性为False
+template = Template("My name is {{ my_name }}.")
+context = Context({"my_name": "<script>alert(123);</script>"}, autoescape=False)
+template.render(context)
+
+
+# render_to_string 渲染函数上下文设置autoescape=False
+render_to_string("index.html", {"my_name": "<script>alert(123);</script>", "autoescape": False})
+
+# 这种属性输出没有被单或者双引号包围，可以导致额外的属性注入
+# 进而导致XSS, id='123 onerror=javascript:alert(123) '
+<img id={{ id }}></div>
+
+
+# 直接输出到script标签内的语句django无能为力，没法防XSS
+# name='alert(123)'
+<script>var name = {{ name }};</script>
+
+```
+- safe
+```python
+# safe filter 处理过的输出参数不会被转义可导致问题
+{{ title | safe | escape }}
+```
+- safeseq
+```python
+# safeseq filter 处理过的输出参数不会被转义可导致问题
+{{ title_list | safeseq | join:", " }}
+```
+- mark_safe
+```python
+# mark_safe 标记过的输出内容不会被转义
+mark_safe("<b>%s</b>" % title)
+```
+- SafeString
+```python
+# SafeString 标记过的输出不会被转义
+SafeString("<b>%s</b>" % title)
+```
+- is_safe
+```python
+# 注册带 is_safe=True 属性的过滤器，输出结果不会被转义
+@register.filter(is_safe=True)
+def myfilter(value):
+    return value
+{{ title | myfilter }}
+```
+- html_safe
+```python
+# html_safe 装饰器定义封装__str__的__html__类方法，
+# 导致__str__输出的内容不会被转义
+@html_safe
+class RawHtml(str):
+    def __str__(self):
+        return data
+```
+
