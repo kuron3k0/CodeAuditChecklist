@@ -143,6 +143,21 @@ tornado.web.UIModule类render_string函数第一个参数指向的文件内容
 - os.pipe
 - os.listdir
 - os.access
+- os.symlink
+- os.walk
+- os.fwalk
+- os.rename
+- os.renames
+- os.replace
+- os.rmdir
+- os.scandir
+- os.removedirs
+- os.unlink
+- os.chdir
+- os.link
+- os.mkdir
+- os.makedirs
+- os.readlink
 - types
 ```python
 import types
@@ -152,6 +167,9 @@ types.FileType("/etc/passwd").read()
 	- send_file
 	- send_from_directory
 	- send_static_file（？）
+- distutils.file_util.copy_file
+- distutils.file_util.move_file
+- distutils.file_util.write_file
   
 ### Deserialization
 - pickle.load
@@ -297,3 +315,12 @@ class RawHtml(str):
         return data
 ```
 
+### Redirect
+- redirect
+```python
+return redirect(url)
+```
+- make_response
+```python
+return make_response(("", 302, {"Location":url}))
+```
