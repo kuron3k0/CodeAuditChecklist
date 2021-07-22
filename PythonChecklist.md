@@ -324,3 +324,10 @@ return redirect(url)
 ```python
 return make_response(("", 302, {"Location":url}))
 ```
+
+### SQL Injection
+- django
+    - User.objects.raw
+    - User.objects.extra
+    - User.objects.RawSQL
+    - User.objects.order_by(CVE-2021-35042) 
