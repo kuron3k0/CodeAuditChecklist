@@ -156,6 +156,20 @@ OkHttpClient client = new OkHttpClient();
 Request request = new Request.Builder().url("http://127.0.0.1:8000/ok").build();
 client.newCall(request).execute().body().string();
 ```
+- RestTemplate
+```java
+//spring
+restTemplate.getForEntity(url,String.class);
+restTemplate.postForEntity(url, httpEntity, String.class);
+restTemplate.exchange(url, HttpMethod.GET,resultHttpEntity,String.class);
+RequestEntity request = RequestEntity
+     .post(new URI("https://example.com/foo"))
+     .accept(MediaType.APPLICATION_JSON)
+     .body(body);
+ResponseEntity<MyResponse> response = template.exchange(request, MyResponse.class);
+
+```
+
 ### FILE
 - MultipartFile
 ```java
