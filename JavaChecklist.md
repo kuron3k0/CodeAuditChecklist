@@ -121,6 +121,7 @@ public class OracleJDBC {
 - XMLDecoder.readObject
 - ObjectMapper.readValue
 - JSON.parseObject
+- DriverManager.getConnection
 
 ### SSRF
 - HttpClient4
